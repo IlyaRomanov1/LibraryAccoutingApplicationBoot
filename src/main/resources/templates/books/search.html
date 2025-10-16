@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книги</title>
+</head>
+<body>
+    <form th:method="POST" th:action="@{/books/find}">
+        <label for="tittle">Найти книгу:</label>
+        <input type="text" name="str" id="tittle" th:value="${searchQuery}">
+
+        <input type="submit" value="Поиск!"/>
+
+
+    </form>
+
+    <div th:if="${book != null}">
+        <h3>Книга:</h3>
+        <p>
+            <strong>Название:</strong> <span th:text="${book.tittle}"></span><br>
+            <strong>Автор:</strong> <span th:text="${book.author}"></span><br>
+            <strong>Год выпуска:</strong> <span th:text="${book.yearOfProduction}"></span>
+        </p>
+
+        <div th:if="${person != null}">
+        <h3>Читатель:</h3>
+        <p>
+            <strong>Полное имя:</strong> <span th:text="${person.fullName}"></span><br>
+            <strong>Год рождения:</strong> <span th:text="${person.yearOfBirth}"></span><br>
+        </p>
+        </div>
+
+        <div th:if="${person == null}">
+            <h3>Читатель:</h3>
+            <p>
+                Книга свободна
+            </p>
+        </div>
+    </div>
+
+    <div th:if="${message != null}">
+        <p style="color:red" th:text="${message}"></p>
+    </div>
+
+
+
+</body>
+</html>
